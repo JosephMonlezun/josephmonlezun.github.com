@@ -1,98 +1,143 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Bouncing Box</title>
-	<script src="jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<style>
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(51, 15, 133);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
 			display: block;
 			position: absolute;
 			top: 100px;
-			left: 0px;  /* <--- Change me! */
+			left: 0px;  /* Starting position */
 		}
-		.board{
-			height: 100vh;
-		}
-	</style>
-	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+		.board {
+    height: 100vh;
+    background-image: url('https://wallpaper-house.com/data/out/12/wallpaper2you_543513.jpg');
+    background-size: cover; /* Adjusts the background image to cover the entire element */
+}
 
+	</style>
 </head>
 <body class="board">
-	<!-- HTML for the box -->
 	<div class="box">?</div>
 
 	<script>
 		(function(){
-			'use strict'
-			/* global jQuery */
+			'use strict';
 
-			//////////////////////////////////////////////////////////////////
-			/////////////////// SETUP DO NOT DELETE //////////////////////////
-			//////////////////////////////////////////////////////////////////
-			
-			var box = jQuery('.box');	// reference to the HTML .box element
-			var board = jQuery('.board');	// reference to the HTML .board element
-			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			var box = jQuery('.box');
+			var board = jQuery('.board');
+			var boardWidth = board.width();
+			var positionX = 0;
+			var points = 0;
+			var speed = 10;
 
-			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
-			
-			// Every time the box is clicked, call the handleBoxClick Function (see below)
+
 			box.on('click', handleBoxClick);
 
-			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX) {
 				box.css("left", newPositionX);
 			}
 
-			// changes the text displayed on the Box
 			function changeBoxText(newText) {
 				box.text(newText);
 			}
 
-			//////////////////////////////////////////////////////////////////
-			/////////////////// YOUR CODE BELOW HERE /////////////////////////
-			//////////////////////////////////////////////////////////////////
-			
-			// TODO 2 - Variable declarations 
-			var positionX = 0;
-
-			
-			/* 
-			This Function will be called 20 times/second. Each time it is called,
-			it should move the Box to a new location. If the box drifts off the screen
-			turn it around! 
-			*/
 			function update() {
-				positionX = positionX + 10;
+				positionX = positionX + speed;
 				moveBoxTo(positionX);
 
-			};
+				// Check for collisions
+				if (positionX > boardWidth) {
+					// Bounce off the right wall
+					speed = -speed;
+				}
 
-			/* 
-			This Function will be called each time the box is clicked. Each time it is called,
-			it should increase the points total, increase the speed, and move the box to
-			the left side of the screen.
-			*/
+				if (positionX < 0) {
+					// Bounce off the left wall
+					speed = -speed;
+				}
+			}
+
 			function handleBoxClick() {
-				console.log(positionX)
 				positionX = 0;
-				// Reassigning the positionX variable to 0 so that the box will move back to the left side of the screen
+				changeBoxText(++points);
+				speed += 3;
 
-			};
-
-
-
-
+				// Check for bug fix
+				if (speed < 0) {
+					speed -= 3;
+				} else {
+					speed += 3;
+				}
+			}
 
 		})();
 	</script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bouncing Box</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .top-bar {
+            background: linear-gradient(45deg, #3498db, #e74c3c); /* Gradient background */
+            color: #fff; /* Text color */
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-button {
+            color: #fff; /* Text color */
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 2px solid #fff; /* White border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .home-button:hover {
+            background-color: #fff; /* White background on hover */
+            color: #3498db; /* Highlight color on hover */
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for emphasis */
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML for the top bar with home button -->
+    <div class="top-bar">
+        <span class="brand">Bouncing Box</span>
+        <a href="//5500-josephmonle-josephmonle-v2cby82si1o.ws-us107.gitpod.io/index.html" class="home-button">Home</a>
+    </div>
+</body>
+</html>
+
+
