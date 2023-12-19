@@ -10,7 +10,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: rgb(51, 15, 133);
+			background-color: rgb(255, 255, 255);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -22,7 +22,7 @@
 		.board {
     height: 100vh;
     background-image: url('https://wallpaper-house.com/data/out/12/wallpaper2you_543513.jpg');
-    background-size: cover; /* Adjusts the background image to cover the entire element */
+    background-size: cover; /
 }
 
 	</style>
@@ -57,7 +57,6 @@
 				positionX = positionX + speed;
 				moveBoxTo(positionX);
 
-				// Check for collisions
 				if (positionX > boardWidth) {
 					// Bounce off the right wall
 					speed = -speed;
@@ -74,7 +73,6 @@
 				changeBoxText(++points);
 				speed += 3;
 
-				// Check for bug fix
 				if (speed < 0) {
 					speed -= 3;
 				} else {
@@ -99,12 +97,12 @@
         }
 
         .top-bar {
-            background: linear-gradient(45deg, #3498db, #e74c3c); /* Gradient background */
-            color: #fff; /* Text color */
+            background: linear-gradient(45deg, #3498db, #e74c3c); 
+            color: #fff; 
             padding: 10px;
             text-align: center;
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -133,7 +131,6 @@
     </style>
 </head>
 <body>
-    <!-- HTML for the top bar with home button -->
     <div class="top-bar">
         <span class="brand">Bouncing Box</span>
         <a href="//5500-josephmonle-josephmonle-v2cby82si1o.ws-us107.gitpod.io/index.html" class="home-button">Home</a>
