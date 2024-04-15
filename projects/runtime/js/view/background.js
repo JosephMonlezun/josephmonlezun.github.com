@@ -36,11 +36,11 @@ var background = function(window) {
             moon.scaleY = 0.1; 
             background.addChild(moon);
             
-            for (var i = 0; i < 100; ++i) {
-                var star = draw.circle(2, "white");
-                star.x = Math.random() * canvasWidth;
-                star.y = Math.random() * groundY;
-                background.addChild(star);
+            for (var i = 0; i <= 100; ++i) {
+                var circle = draw.circle(10, "white", "lightGray", 2);
+                circle.x = Math.random() * canvasWidth;
+                circle.y = Math.random() * groundY;
+                background.addChild(circle);
             }
             
             // TODO 3: Add Tree and Move It
