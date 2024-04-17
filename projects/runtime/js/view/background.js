@@ -25,15 +25,22 @@ var background = function(window) {
             background.removeAllChildren();
 
             // TODO 1: Modify Background Color
-            var backgroundFill = draw.rect(canvasWidth, canvasHeight, 'lightblue');
+            var backgroundFill = draw.rect(canvasWidth, canvasHeight, 'darkblue');
             background.addChild(backgroundFill);
             
             // TODO 2: Add Moon and Starfield
+            var gal = draw.bitmap("img/gal.jpg");
+            gal.x = 0;
+            gal.y = 0;
+            gal.scaleX = 50.20; 
+            gal.scaleY = 50.20; 
+            background.addChild(gal);
+            
             var moon = draw.bitmap("img/moon.png");
             moon.x = 300;
             moon.y = 200;
-            moon.scaleX = 0.1; 
-            moon.scaleY = 0.1; 
+            moon.scaleX = 0.20; 
+            moon.scaleY = 0.20; 
             background.addChild(moon);
             
             for (var i = 0; i <= 100; ++i) {
@@ -52,7 +59,7 @@ var background = function(window) {
             // TODO 4: Part 1 - Add Buildings
             for (var i = 0; i < 5; ++i) {
                 var buildingHeight = 300;
-                var building = draw.rect(75, buildingHeight, "LightGray", "Black", 1);
+                var building = draw.rect(75, buildingHeight, "DarkGray", "Black", 1);
                 building.x = 200 * i;
                 building.y = groundY - buildingHeight;
                 background.addChild(building);
